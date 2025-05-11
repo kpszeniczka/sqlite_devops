@@ -1,4 +1,5 @@
-FROM sqlite_builder
+FROM sqlite_builder:latest
 
 WORKDIR /sqlite
-RUN make devtest
+
+RUN make test
