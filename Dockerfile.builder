@@ -1,9 +1,9 @@
-FROM fedora
+FROM fedora:41
 
 RUN dnf -y update && \
-    dnf -y install git gcc tcl-devel
+    dnf -y install git gcc make tcl-devel
 
 RUN git clone https://github.com/sqlite/sqlite.git
 WORKDIR /sqlite
 RUN ./configure
-RUN make sqlite3
+RUN make
