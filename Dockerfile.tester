@@ -2,19 +2,13 @@ FROM sqlite_builder
 
 WORKDIR /sqlite
 
-# Install sudo if needed
-RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+# Create a non-root user
+RUN groupadd -r testuser && useradd -r -g testuser testuser
 
-# Create a non-root user with sudo privileges
-RUN groupadd -r testuser && \
-    useradd -r -g testuser -G sudo testuser && \
-    echo "testuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/testuser
-
-# Change ownership of the sqlite directory
+# Change ownership of the sqlite directory to the test user
 RUN chown -R testuser:testuser /sqlite
 
 # Switch to non-root user
 USER testuser
 
-# Run tests or just verify build works
-RUN make test || echo "Tests completed with some failures (expected when running in container)"
+RUN make test
