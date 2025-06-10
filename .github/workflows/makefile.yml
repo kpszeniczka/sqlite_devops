@@ -19,8 +19,8 @@ jobs:
 
       - name: Build sqlite_builder image
         run: |
-          docker build -t sqlite_builder -f sqlite_devops/Dockerfile.builder sqlite_devops
+          docker build -t sqlite_builder -f Dockerfile.builder sqlite_devops
 
       - name: Build sqlite_tester image (ignore failure)
         run: |
-          docker build -t sqlite_tester -f sqlite_devops/Dockerfile.tester sqlite_devops || true
+          docker build -t sqlite_tester -f Dockerfile.tester sqlite_devops || true
