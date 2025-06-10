@@ -18,7 +18,7 @@ jobs:
 
       - name: Build with Dockerfile.builder
         run: |
-          docker build -t sqlite_builder -f /Dockerfile.builder sqlite_devops
+          docker build -t sqlite_builder -f Dockerfile.builder
 
       - name: Archive build artifact
         if: success()
