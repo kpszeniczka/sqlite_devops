@@ -13,18 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: List repo contents
-        run: ls -la
-
-      - name: List sqlite_devops contents
-        run: ls -la sqlite_devops
-
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build with Dockerfile.builder
         run: |
-          docker build -t sqlite_builder -f sqlite_devops/Dockerfile.builder sqlite_devops
+          docker build -t sqlite_builder -f /Dockerfile.builder sqlite_devops
 
       - name: Archive build artifact
         if: success()
