@@ -18,11 +18,11 @@ jobs:
 
       - name: Build sqlite_builder image
         run: |
-          docker build -t sqlite_builder -f sqlite_devops/Dockerfile.builder .
+          docker build -t sqlite_builder -f Dockerfile.builder .
 
       - name: Build sqlite_tester image (ignore failure)
         run: |
-          docker build -t sqlite_tester -f sqlite_devops/Dockerfile.tester . || true
+          docker build -t sqlite_tester -f Dockerfile.tester . || true
 
       - name: Archive build artifact
         if: success()
