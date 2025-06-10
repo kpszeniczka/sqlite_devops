@@ -16,9 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build with Dockerfile.builder
+      - name: Build sqlite_builder image
         run: |
-          docker build -t sqlite_builder -f Dockerfile.builder .
+          docker build -t sqlite_builder -f sqlite_devops/Dockerfile.builder sqlite_devops
+
+      - name: Build sqlite_tester image (ignore failure)
+        run: |
+          docker build -t sqlite_tester -f sqlite_devops/Dockerfile.tester sqlite_devops || true
 
       - name: Archive build artifact
         if: success()
